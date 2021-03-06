@@ -20,7 +20,7 @@ class DeliveryListAdapter(
 
         fun bind(delivery: Delivery) {
             binding.deliveryIdDescTv.text = delivery.id.toString()
-            binding.deliveryIdDescTv.text = delivery.address
+            binding.addressTv.text = delivery.address
         }
     }
 
