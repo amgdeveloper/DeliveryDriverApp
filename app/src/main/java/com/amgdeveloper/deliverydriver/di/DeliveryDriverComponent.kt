@@ -12,7 +12,7 @@ import javax.inject.Singleton
  */
 
 @Singleton
-@Component(modules = [AppModule::class])
+@Component(modules = [AppModule::class, DataModule::class])
 interface DeliveryDriverComponent {
 
     fun plus(module: DeliveryListFragmentModule): DeliveryListFragmentComponent

@@ -5,13 +5,20 @@ import androidx.lifecycle.MutableLiveData
 import com.amgdeveloper.deliverydriver.common.Event
 import com.amgdeveloper.deliverydriver.common.ScopedViewModel
 import com.amgdeveloper.deliverydriver.domain.Delivery
+import com.amgdeveloper.deliverydriver.usecases.GetDeliveries
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 /**
  * Created by amgdeveloper
  */
-class DeliveryListViewModel(coroutineDispatcher: CoroutineDispatcher) :
+class DeliveryListViewModel(
+    val getDeliveries: GetDeliveries,
+    coroutineDispatcher: CoroutineDispatcher
+) :
     ScopedViewModel(coroutineDispatcher) {
 
     sealed class UiModel {
@@ -31,16 +38,18 @@ class DeliveryListViewModel(coroutineDispatcher: CoroutineDispatcher) :
 
 
     private fun refresh() {
-        _model.value = UiModel.Content(loadDemoDeliveries())
-    }
+        launch {
+            _model.value = UiModel.Loading
 
+            withContext(Dispatchers.IO){
 
-    private fun loadDemoDeliveries(): List<Delivery> {
-        return listOf(
-            Delivery(1, "adddress 1", 1.1F, 2.2F, "Customer name 1", false, ""),
-            Delivery(2, "adddress 2", 1.1F, 2.2F, "Customer name 2", false, ""),
-            Delivery(3, "adddress 3", 1.1F, 2.2F, "Customer name 3", false, "")
-        )
+               val result = UiModel.Content(getDeliveries.invoke())
+
+                withContext(Dispatchers.Main){
+                    _model.value =result
+                }
+            }
+        }
     }
 
     fun onDeliveryClicked(recipe: Delivery) {
