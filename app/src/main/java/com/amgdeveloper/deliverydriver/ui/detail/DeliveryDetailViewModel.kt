@@ -4,7 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.amgdeveloper.deliverydriver.common.ScopedViewModel
 import com.amgdeveloper.deliverydriver.domain.Delivery
+import com.amgdeveloper.deliverydriver.usecases.GetActiveDelivery
 import com.amgdeveloper.deliverydriver.usecases.GetDeliveryById
+import com.amgdeveloper.deliverydriver.usecases.SetActiveDelivery
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 
@@ -14,11 +16,13 @@ import kotlinx.coroutines.launch
  */
 class DeliveryDetailViewModel(
     private val getDeliveryById: GetDeliveryById,
+    private val setActiveDelivery: SetActiveDelivery,
+    private val getActiveDelivery: GetActiveDelivery,
+    override val uiDispatcher: CoroutineDispatcher,
+    private val recipeId: Long
+) : ScopedViewModel(uiDispatcher) {
 
-        override val uiDispatcher: CoroutineDispatcher,
-        private val recipeId: Long) : ScopedViewModel(uiDispatcher) {
-
-    data class UIModel(val delivery : Delivery)
+    data class UIModel(val delivery : Delivery, val active:Boolean)
     private lateinit var delivery : Delivery
 
     private val _model = MutableLiveData<UIModel>()
@@ -31,7 +35,18 @@ class DeliveryDetailViewModel(
     private fun getDelivery(id: Long) {
         launch {
             delivery = getDeliveryById.invoke(id)
-            _model.value = UIModel(delivery)
+            val activeDeliverId = getActiveDelivery.invoke()
+            val active: Boolean = (activeDeliverId != null && delivery.id == activeDeliverId)
+            _model.value = UIModel(delivery, active)
+        }
+    }
+
+    fun onActivateClicked() {
+        launch {
+            setActiveDelivery.invoke(recipeId)
+            if (_model.value != null) {
+                _model.value = UIModel(_model.value!!.delivery, !_model.value!!.active)
+            }
         }
     }
 }

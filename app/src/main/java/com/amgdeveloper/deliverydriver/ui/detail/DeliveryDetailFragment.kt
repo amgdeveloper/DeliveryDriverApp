@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.amgdeveloper.deliverydriver.R
 import com.amgdeveloper.deliverydriver.common.app
 import com.amgdeveloper.deliverydriver.common.getViewModel
 import com.amgdeveloper.deliverydriver.databinding.FragmentDeliveryDetailBinding
@@ -14,7 +15,6 @@ import com.amgdeveloper.deliverydriver.databinding.FragmentDeliveryDetailBinding
  * Created by amgdeveloper on 22/11/2020
  */
 class DeliveryDetailFragment : Fragment() {
-
     private lateinit var component: DeliveryDetailFragmentComponent
     private lateinit var binding: FragmentDeliveryDetailBinding
     private val viewModel: DeliveryDetailViewModel by lazy { getViewModel { component.deliveryDetailViewModel } }
@@ -42,11 +42,20 @@ class DeliveryDetailFragment : Fragment() {
                 updateUi(it)
             })
         }
+
+        binding.activeButton.setOnClickListener {
+            viewModel.onActivateClicked()
+        }
+
         return binding.root
     }
 
     private fun updateUi(model: DeliveryDetailViewModel.UIModel) = with(binding) {
         val delivery = model.delivery
         allInfoTv.text = delivery.toString()
+        if (model.active)
+            activeButton.setText(R.string.deactivate)
+        else
+            activeButton.setText(R.string.activate)
     }
 }
