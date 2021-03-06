@@ -16,6 +16,8 @@ buildscript {
     ext {
         dagger = "2.31"
         coroutines = "2.2.0"
+        retrofit = "2.9.0"
+        okhttp3 = "4.9.0"
 
         kotlinLibs = [
                 stdLib    : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
