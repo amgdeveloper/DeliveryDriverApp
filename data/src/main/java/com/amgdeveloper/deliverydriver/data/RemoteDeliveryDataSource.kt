@@ -8,4 +8,6 @@ import com.amgdeveloper.deliverydriver.domain.Delivery
 interface RemoteDeliveryDataSource {
 
     suspend fun getDeliveries(): List<Delivery>
+
+    suspend fun getDelivery(id: Long): Delivery
 }

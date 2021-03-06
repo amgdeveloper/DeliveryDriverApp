@@ -10,4 +10,8 @@ class DeliveryRepository(private val remoteDeliveryDataSource: RemoteDeliveryDat
     suspend fun getDeliveries(): List<Delivery> {
         return remoteDeliveryDataSource.getDeliveries()
     }
+
+    suspend fun getDeliveryById(id: Long): Delivery {
+        return remoteDeliveryDataSource.getDelivery(id)
+    }
 }

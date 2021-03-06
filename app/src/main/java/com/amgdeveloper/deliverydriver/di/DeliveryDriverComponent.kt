@@ -1,6 +1,8 @@
 package com.amgdeveloper.deliverydriver.di
 
 import android.app.Application
+import com.amgdeveloper.deliverydriver.ui.detail.DeliveryDetailFragmentComponent
+import com.amgdeveloper.deliverydriver.ui.detail.DeliveryDetailFragmentModule
 import com.amgdeveloper.deliverydriver.ui.main.DeliveryListFragmentComponent
 import com.amgdeveloper.deliverydriver.ui.main.DeliveryListFragmentModule
 import dagger.BindsInstance
@@ -16,6 +18,8 @@ import javax.inject.Singleton
 interface DeliveryDriverComponent {
 
     fun plus(module: DeliveryListFragmentModule): DeliveryListFragmentComponent
+
+    fun plus(module: DeliveryDetailFragmentModule): DeliveryDetailFragmentComponent
 
     @Component.Factory
     interface Factory {

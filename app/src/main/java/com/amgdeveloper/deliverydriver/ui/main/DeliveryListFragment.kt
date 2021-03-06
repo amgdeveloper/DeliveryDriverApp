@@ -9,7 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.amgdeveloper.deliverydriver.common.app
 import com.amgdeveloper.deliverydriver.common.getViewModel
+import com.amgdeveloper.deliverydriver.common.startActivity
 import com.amgdeveloper.deliverydriver.databinding.FragmentRecipeListBinding
+import com.amgdeveloper.deliverydriver.ui.detail.DeliveryDetailActivity
 import com.amgdeveloper.deliverydriver.ui.main.DeliveryListViewModel.UiModel.Content
 import com.amgdeveloper.deliverydriver.ui.main.DeliveryListViewModel.UiModel.Loading
 
@@ -45,7 +47,9 @@ class DeliveryListFragment : Fragment() {
 
         viewModel.navigation.observe(viewLifecycleOwner, Observer { event ->
             event.getContentIfNotHandled()?.let {
-
+                context?.startActivity<DeliveryDetailActivity> {
+                    putExtra(DeliveryDetailActivity.EXTRA_DELIVERY_ID, it.id)
+                }
             }
         })
         return binding.root

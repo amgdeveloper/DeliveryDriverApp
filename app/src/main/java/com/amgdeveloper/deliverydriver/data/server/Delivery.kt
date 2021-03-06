@@ -13,6 +13,7 @@ data class Delivery(
     val longitude: Float,
     @SerializedName("customer_name")
     val customerName: String,
+    @SerializedName("requires_signature")
     val requiresSignature: Boolean?,
     @SerializedName("special_instructions")
     val specialInstructions: String?

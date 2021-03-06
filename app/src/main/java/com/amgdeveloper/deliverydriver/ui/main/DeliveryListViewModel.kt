@@ -16,7 +16,7 @@ import kotlinx.coroutines.withContext
  * Created by amgdeveloper
  */
 class DeliveryListViewModel(
-    val getDeliveries: GetDeliveries,
+    private val getDeliveries: GetDeliveries,
     coroutineDispatcher: CoroutineDispatcher
 ) :
     ScopedViewModel(coroutineDispatcher) {

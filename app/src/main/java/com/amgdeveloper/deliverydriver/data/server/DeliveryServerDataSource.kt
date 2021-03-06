@@ -12,4 +12,8 @@ class DeliveryServerDataSource(private val deliveryServer: DeliveryServer) :
 
     override suspend fun getDeliveries(): List<Delivery> =
         deliveryServer.service.getDeliveries().map { it.toDomainDelivery() }
+
+    override suspend fun getDelivery(id: Long): Delivery =
+        deliveryServer.service.getDelivery(id).toDomainDelivery()
+
 }
