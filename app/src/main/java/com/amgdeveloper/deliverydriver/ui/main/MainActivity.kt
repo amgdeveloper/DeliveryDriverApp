@@ -6,7 +6,9 @@ import com.amgdeveloper.deliverydriver.R
 import com.amgdeveloper.deliverydriver.common.fragmentExists
 import com.amgdeveloper.deliverydriver.databinding.ActivityMainBinding
 
-
+/**
+ * Created by amgdeveloper on 05/03/2021
+ */
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

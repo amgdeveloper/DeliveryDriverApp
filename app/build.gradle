@@ -42,6 +42,10 @@ dependencies {
     implementation project(":domain")
     implementation project(":usecases")
 
+    //Architecture components
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
+
+    implementation kotlinLibs.values()
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.3.2'
     implementation 'androidx.appcompat:appcompat:1.2.0'

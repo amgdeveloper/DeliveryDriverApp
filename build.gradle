@@ -12,6 +12,16 @@ buildscript {
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
+
+    ext {
+        coroutines = "2.2.0"
+
+        kotlinLibs = [
+                stdLib    : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
+                //allows context in Coroutines
+                coroutines: "androidx.lifecycle:lifecycle-runtime-ktx:$rootProject.coroutines"
+        ]
+    }
 }
 
 allprojects {
