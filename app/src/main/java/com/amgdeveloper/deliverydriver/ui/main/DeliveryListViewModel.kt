@@ -5,14 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import com.amgdeveloper.deliverydriver.common.Event
 import com.amgdeveloper.deliverydriver.common.ScopedViewModel
 import com.amgdeveloper.deliverydriver.domain.Delivery
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.CoroutineDispatcher
 
 
 /**
- * Created by amgdeveloper on 05/03/2021
+ * Created by amgdeveloper
  */
-class DeliveryListViewModel() :
-    ScopedViewModel(Dispatchers.Main) {  //TODO: inject the UI Dispatcher
+class DeliveryListViewModel(coroutineDispatcher: CoroutineDispatcher) :
+    ScopedViewModel(coroutineDispatcher) {
 
     sealed class UiModel {
         object Loading : UiModel()

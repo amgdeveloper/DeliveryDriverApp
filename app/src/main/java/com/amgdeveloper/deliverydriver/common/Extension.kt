@@ -1,5 +1,6 @@
 package com.amgdeveloper.deliverydriver.common
 
+import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModel
@@ -18,3 +19,6 @@ inline fun <reified T : ViewModel> Fragment.getViewModel(crossinline factory: ()
     }
     return ViewModelProvider(this, vmFactory).get()
 }
+
+val Context.app: DeliveryDriverApp
+    get() = applicationContext as DeliveryDriverApp

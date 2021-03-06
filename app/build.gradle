@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -42,8 +43,13 @@ dependencies {
     implementation project(":domain")
     implementation project(":usecases")
 
+    //Dagger2
+    implementation "com.google.dagger:dagger:$rootProject.dagger"
+    kapt "com.google.dagger:dagger-compiler:$rootProject.dagger"
+
+
     //Architecture components
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0'
 
     implementation kotlinLibs.values()
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"

@@ -7,17 +7,19 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import com.amgdeveloper.deliverydriver.common.app
 import com.amgdeveloper.deliverydriver.common.getViewModel
 import com.amgdeveloper.deliverydriver.databinding.FragmentRecipeListBinding
 import com.amgdeveloper.deliverydriver.ui.main.DeliveryListViewModel.UiModel.Content
 import com.amgdeveloper.deliverydriver.ui.main.DeliveryListViewModel.UiModel.Loading
 
 /**
- * Created by amgdeveloper on 05/03/2021
+ * Created by amgdeveloper
  */
 class DeliveryListFragment : Fragment() {
 
-    private val viewModel: DeliveryListViewModel by lazy { getViewModel { DeliveryListViewModel() } }   //TODO: inject viewmodel
+    private lateinit var component: DeliveryListFragmentComponent
+    private val viewModel: DeliveryListViewModel by lazy { getViewModel { component.deliveryListViewModel } }
     private lateinit var adapter: DeliveryListAdapter
     private lateinit var progressDialog: ProgressBar
 
@@ -31,6 +33,8 @@ class DeliveryListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val binding = FragmentRecipeListBinding.inflate(layoutInflater, container, false)
+
+        component = requireContext().app.component.plus(DeliveryListFragmentModule())
 
         val recyclerView = binding.recyclerView
         progressDialog = binding.progressbar
