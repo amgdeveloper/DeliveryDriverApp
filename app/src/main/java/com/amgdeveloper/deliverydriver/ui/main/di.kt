@@ -1,5 +1,6 @@
 package com.amgdeveloper.deliverydriver.ui.main
 
+import com.amgdeveloper.deliverydriver.data.PermissionChecker
 import com.amgdeveloper.deliverydriver.data.repository.DeliveryRepository
 import com.amgdeveloper.deliverydriver.usecases.GetDeliveries
 import dagger.Module
@@ -14,8 +15,11 @@ import kotlinx.coroutines.CoroutineDispatcher
 class DeliveryListFragmentModule {
 
     @Provides
-    fun deliveryListViewModelProvider(getDeliveries: GetDeliveries, coroutineDispatcher: CoroutineDispatcher): DeliveryListViewModel =
-        DeliveryListViewModel(getDeliveries, coroutineDispatcher)
+    fun deliveryListViewModelProvider(
+        getDeliveries: GetDeliveries, permissionChecker: PermissionChecker,
+        coroutineDispatcher: CoroutineDispatcher
+    ): DeliveryListViewModel =
+        DeliveryListViewModel(getDeliveries, permissionChecker, coroutineDispatcher)
 
     @Provides
     fun getDeliveriesProvider(deliveryRepository: DeliveryRepository): GetDeliveries =
