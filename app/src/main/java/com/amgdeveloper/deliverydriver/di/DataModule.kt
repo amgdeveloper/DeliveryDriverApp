@@ -20,6 +20,7 @@ class DataModule {
     ): DeliveryRepository =
         DeliveryRepository(remoteDeliveryDataSource)
 
+    //TODO: move this to app module
     @Provides
     fun activeDeliveryRepositoryProvider(context: Context): ActiveDeliveryRepository =
         SharedPreferenceActiveDeliveryRepository(context)

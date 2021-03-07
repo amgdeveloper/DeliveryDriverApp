@@ -2,6 +2,7 @@ package com.amgdeveloper.deliverydriver.di
 
 import android.app.Application
 import com.amgdeveloper.deliverydriver.common.DeliveryDriverApp
+import com.amgdeveloper.deliverydriver.framework.service.TrackingService
 import com.amgdeveloper.deliverydriver.ui.detail.DeliveryDetailFragmentComponent
 import com.amgdeveloper.deliverydriver.ui.detail.DeliveryDetailFragmentModule
 import com.amgdeveloper.deliverydriver.ui.main.DeliveryListFragmentComponent
@@ -23,6 +24,8 @@ interface DeliveryDriverComponent {
     fun plus(module: DeliveryDetailFragmentModule): DeliveryDetailFragmentComponent
 
     fun inject(app: DeliveryDriverApp)
+
+    fun inject (service:TrackingService)
 
     @Component.Factory
     interface Factory {
