@@ -7,8 +7,10 @@ import com.amgdeveloper.deliverydriver.data.PermissionChecker
 import com.amgdeveloper.deliverydriver.data.source.BatteryDataSource
 import com.amgdeveloper.deliverydriver.data.source.RemoteDeliveryDataSource
 import com.amgdeveloper.deliverydriver.data.framework.BatteryDriver
+import com.amgdeveloper.deliverydriver.data.framework.GooglePlayServicesDataSource
 import com.amgdeveloper.deliverydriver.data.server.DeliveryServer
 import com.amgdeveloper.deliverydriver.data.server.DeliveryServerDataSource
+import com.amgdeveloper.deliverydriver.data.source.LocationDataSource
 import com.amgdeveloper.deliverydriver.framework.service.TrackingController
 import com.amgdeveloper.deliverydriver.usecases.GetActiveDelivery
 import dagger.Module
@@ -42,15 +44,22 @@ class AppModule {
     fun provideTrackingController(
         context: Context,
         getActiveDelivery: GetActiveDelivery,
-        batteryDataSource: BatteryDataSource
+        batteryDataSource: BatteryDataSource,
+        locationDataSource: LocationDataSource
     ) =
-        TrackingController(context, getActiveDelivery, batteryDataSource)
+        TrackingController(context, getActiveDelivery, batteryDataSource, locationDataSource)
 
+    @Singleton
     @Provides
     fun provideBatteryDataSource(context : Context): BatteryDataSource =BatteryDriver(context)
 
     @Provides
     fun permissionCheckerProvider(app: Application): PermissionChecker =
         AndroidPermissionChecker(app)
+
+    @Singleton
+    @Provides
+    fun locationDataSourceProvider (app: Application) : LocationDataSource =
+        GooglePlayServicesDataSource(app)
 
 }

@@ -4,9 +4,11 @@ import android.content.Context
 import android.content.Intent
 import android.os.HandlerThread
 import com.amgdeveloper.deliverydriver.data.source.BatteryDataSource
+import com.amgdeveloper.deliverydriver.data.source.LocationDataSource
+import com.amgdeveloper.deliverydriver.domain.Location
 import com.amgdeveloper.deliverydriver.usecases.GetActiveDelivery
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
+import java.lang.Runnable
 import java.util.concurrent.*
 
 /**
@@ -16,11 +18,13 @@ class TrackingController(
     private val context: Context,
     private val getActiveDelivery: GetActiveDelivery,
     private val batteryDataSource: BatteryDataSource,
+    private val locationDataSource: LocationDataSource,
 ) {
 
     private lateinit var getInfoHandler: android.os.Handler
     private lateinit var getInfoHandlerThread: HandlerThread
     private val intervalScanInSec: Long = 1
+    private lateinit var lastAvailableLocation : Location
 
     suspend fun startTracking() {
         withContext(Dispatchers.IO) {
@@ -35,7 +39,7 @@ class TrackingController(
 
     private fun getTrackRunnable(): Runnable =
         Runnable {
-            getTrackingInfo()
+            getBatteryInfo()
         }
 
     fun track() {
@@ -46,10 +50,21 @@ class TrackingController(
             intervalScanInSec,
             TimeUnit.SECONDS
         )
+            requestLocation()
     }
 
-    private fun getTrackingInfo(): Int {
+    private fun requestLocation(){
+        MainScope().launch{
+            lastAvailableLocation = getLocationInfo()
+        }
+    }
+
+    private fun getBatteryInfo(): Int {
         return batteryDataSource.getBatteryLevel()
+    }
+
+    private suspend fun getLocationInfo():Location{
+        return locationDataSource.getCurrentLocation()
     }
 
     private fun startTrackingService() {

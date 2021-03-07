@@ -25,7 +25,9 @@
         </activity>
         <activity android:name=".ui.detail.DeliveryDetailActivity" />
 
-        <service android:name="com.amgdeveloper.deliverydriver.framework.service.TrackingService" />
+        <service
+            android:name="com.amgdeveloper.deliverydriver.framework.service.TrackingService"
+            android:foregroundServiceType="location" />
 
         <receiver
             android:name=".framework.receiver.BootReceiver">
@@ -34,5 +36,6 @@
                 <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+        <receiver android:name=".framework.receiver.LocationReceiver" />
     </application>
 </manifest>
