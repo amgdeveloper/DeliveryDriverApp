@@ -11,8 +11,6 @@ import retrofit2.converter.gson.GsonConverterFactory
  */
 class DeliveryServer(baseUrl: String) {
 
-    //private val client = OkHttpClient.Builder().addInterceptor(getHttpLoginInterceptor()).build()
-
     val okHttpClient = HttpLoggingInterceptor().run {
         level = HttpLoggingInterceptor.Level.BODY
         OkHttpClient.Builder().addInterceptor(this).build()
@@ -21,8 +19,7 @@ class DeliveryServer(baseUrl: String) {
     private val retrofit = Retrofit.Builder()
         .baseUrl(baseUrl)
         .addConverterFactory(GsonConverterFactory.create())
-        //.client(client)
-        .client(okHttpClient)
+        //.client(okHttpClient)
         .build()
 
     var service: DeliveryService = retrofit.create(DeliveryService::class.java)
