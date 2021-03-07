@@ -5,6 +5,8 @@ import android.content.Context
 import com.amgdeveloper.deliverydriver.data.RemoteDeliveryDataSource
 import com.amgdeveloper.deliverydriver.data.server.DeliveryServer
 import com.amgdeveloper.deliverydriver.data.server.DeliveryServerDataSource
+import com.amgdeveloper.deliverydriver.framework.service.TrackingController
+import com.amgdeveloper.deliverydriver.usecases.GetActiveDelivery
 import dagger.Module
 import dagger.Provides
 import kotlinx.coroutines.CoroutineDispatcher
@@ -30,4 +32,10 @@ class AppModule {
     fun appContextProvider(app: Application): Context {
         return app
     }
+
+    @Provides
+    @Singleton
+    fun provideTrackingController(context: Context, getActiveDelivery: GetActiveDelivery) =
+        TrackingController(context, getActiveDelivery)
+
 }

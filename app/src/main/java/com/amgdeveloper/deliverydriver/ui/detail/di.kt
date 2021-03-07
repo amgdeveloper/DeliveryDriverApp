@@ -35,10 +35,6 @@ class DeliveryDetailFragmentModule(private val deliveryId: Long) {
     @Provides
     fun setActiveDeliveryProvider(activeDeliveryRepository: ActiveDeliveryRepository) =
         SetActiveDelivery(activeDeliveryRepository)
-
-    @Provides
-    fun getActiveDeliveryProvider(activeDeliveryRepository: ActiveDeliveryRepository) =
-        GetActiveDelivery(activeDeliveryRepository)
 }
 
 @Subcomponent(modules = [DeliveryDetailFragmentModule::class])
