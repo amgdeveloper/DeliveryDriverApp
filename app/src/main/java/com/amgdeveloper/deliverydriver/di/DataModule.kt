@@ -1,9 +1,9 @@
 package com.amgdeveloper.deliverydriver.di
 
 import android.content.Context
-import com.amgdeveloper.deliverydriver.data.ActiveDeliveryRepository
-import com.amgdeveloper.deliverydriver.data.DeliveryRepository
-import com.amgdeveloper.deliverydriver.data.RemoteDeliveryDataSource
+import com.amgdeveloper.deliverydriver.data.repository.ActiveDeliveryRepository
+import com.amgdeveloper.deliverydriver.data.repository.DeliveryRepository
+import com.amgdeveloper.deliverydriver.data.source.RemoteDeliveryDataSource
 import com.amgdeveloper.deliverydriver.data.database.SharedPreferenceActiveDeliveryRepository
 import dagger.Module
 import dagger.Provides

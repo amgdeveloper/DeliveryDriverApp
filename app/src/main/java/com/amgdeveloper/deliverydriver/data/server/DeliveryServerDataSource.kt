@@ -1,6 +1,6 @@
 package com.amgdeveloper.deliverydriver.data.server
 
-import com.amgdeveloper.deliverydriver.data.RemoteDeliveryDataSource
+import com.amgdeveloper.deliverydriver.data.source.RemoteDeliveryDataSource
 import com.amgdeveloper.deliverydriver.data.toDomainDelivery
 import com.amgdeveloper.deliverydriver.domain.Delivery
 

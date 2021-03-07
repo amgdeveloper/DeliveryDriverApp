@@ -2,7 +2,7 @@ package com.amgdeveloper.deliverydriver.data.database
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.amgdeveloper.deliverydriver.data.ActiveDeliveryRepository
+import com.amgdeveloper.deliverydriver.data.repository.ActiveDeliveryRepository
 
 /**
  * Created by amgdeveloper

@@ -1,6 +1,6 @@
 package com.amgdeveloper.deliverydriver.di
 
-import com.amgdeveloper.deliverydriver.data.ActiveDeliveryRepository
+import com.amgdeveloper.deliverydriver.data.repository.ActiveDeliveryRepository
 import com.amgdeveloper.deliverydriver.usecases.GetActiveDelivery
 import dagger.Module
 import dagger.Provides

@@ -1,4 +1,4 @@
-package com.amgdeveloper.deliverydriver.data
+package com.amgdeveloper.deliverydriver.data.repository
 
 /**
  * Created by amgdeveloper

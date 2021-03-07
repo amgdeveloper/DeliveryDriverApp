@@ -1,5 +1,6 @@
-package com.amgdeveloper.deliverydriver.data
+package com.amgdeveloper.deliverydriver.data.repository
 
+import com.amgdeveloper.deliverydriver.data.source.RemoteDeliveryDataSource
 import com.amgdeveloper.deliverydriver.domain.Delivery
 
 /**

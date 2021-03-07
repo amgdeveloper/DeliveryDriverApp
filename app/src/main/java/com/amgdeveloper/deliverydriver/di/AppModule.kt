@@ -2,8 +2,8 @@ package com.amgdeveloper.deliverydriver.di
 
 import android.app.Application
 import android.content.Context
-import com.amgdeveloper.deliverydriver.data.BatteryDataSource
-import com.amgdeveloper.deliverydriver.data.RemoteDeliveryDataSource
+import com.amgdeveloper.deliverydriver.data.source.BatteryDataSource
+import com.amgdeveloper.deliverydriver.data.source.RemoteDeliveryDataSource
 import com.amgdeveloper.deliverydriver.data.framework.BatteryDriver
 import com.amgdeveloper.deliverydriver.data.server.DeliveryServer
 import com.amgdeveloper.deliverydriver.data.server.DeliveryServerDataSource
@@ -45,6 +45,6 @@ class AppModule {
         TrackingController(context, getActiveDelivery, batteryDataSource)
 
     @Provides
-    fun provideBatteryDataSource(context : Context):BatteryDataSource=BatteryDriver(context)
+    fun provideBatteryDataSource(context : Context): BatteryDataSource =BatteryDriver(context)
 
 }

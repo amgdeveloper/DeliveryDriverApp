@@ -1,6 +1,6 @@
 package com.amgdeveloper.deliverydriver.usecases
 
-import com.amgdeveloper.deliverydriver.data.ActiveDeliveryRepository
+import com.amgdeveloper.deliverydriver.data.repository.ActiveDeliveryRepository
 
 /**
  * Created by amgdeveloper

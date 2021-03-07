@@ -3,7 +3,7 @@ package com.amgdeveloper.deliverydriver.framework.service
 import android.content.Context
 import android.content.Intent
 import android.os.HandlerThread
-import com.amgdeveloper.deliverydriver.data.BatteryDataSource
+import com.amgdeveloper.deliverydriver.data.source.BatteryDataSource
 import com.amgdeveloper.deliverydriver.usecases.GetActiveDelivery
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

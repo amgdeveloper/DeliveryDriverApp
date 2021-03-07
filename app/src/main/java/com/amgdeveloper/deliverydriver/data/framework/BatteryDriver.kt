@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.BatteryManager
-import com.amgdeveloper.deliverydriver.data.BatteryDataSource
+import com.amgdeveloper.deliverydriver.data.source.BatteryDataSource
 
 
 /**
